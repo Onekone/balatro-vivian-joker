@@ -1,0 +1,20 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if _center.soul_pos then"
+position = "before"
+payload = '''
+if _center.face_pos then
+    self.children.floating_sprite = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ASSET_ATLAS['Joker'], self.config.center.face_pos)
+    self.children.floating_sprite.role.draw_major = self
+    self.children.floating_sprite.states.hover.can = false
+    self.children.floating_sprite.states.click.can = false
+end
+'''
+match_indent = true
+times = 1

@@ -1,0 +1,20 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if self.config.center.soul_pos and (self.config.center.discovered or self.bypass_discovery_center) then"
+position = "before"
+payload = '''
+if self.config.center.face_pos then
+    local scale_mod = 0
+    local rotate_mod = 0
+    -- self.children.floating_sprite:draw_shader('dissolve', nil, nil, nil, self.children.center,scale_mod, rotate_mod,nil, 0,nil, 0)
+    self.children.floating_sprite:draw_shader('dissolve', nil, nil, nil, self.children.center, scale_mod, rotate_mod)
+end
+'''
+match_indent = true
+times = 1
