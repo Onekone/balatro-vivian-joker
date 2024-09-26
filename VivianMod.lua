@@ -110,31 +110,28 @@ viv = SMODS.Joker{
     loc_vars = function(self, info_queue, card)
         return { vars = {} }
     end,
-    calculate = function(self, card, context)
+    calculate = function(self,card,context)
+        if context.individual and context.cardarea == G.play then
+            if context.other_card.ability.effect == 'Stone Card' then
+                return {}
+            end
+
+            if context.other_card:is_suit('Spades') then
+                local value = context.other_card.base.nominal + context.other_card.ability.bonus + context.other_card.edition.chips
+                return {
+                    chips = -value,
+                    mult = value,
+                    card = card,
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_mult',
+                        vars = { value }
+                    }
+                }
+            end
+        end
     end
 }
-
-viv.calculate = function(self,card,context)
-    if context.individual and context.cardarea == G.play then
-        if context.other_card.ability.effect == 'Stone Card' then
-            return {}
-        end
-
-        if context.other_card:is_suit('Spades') then
-            local value = context.other_card.base.nominal + context.other_card.ability.bonus + context.other_card.edition.chips
-            return {
-                chips = -value,
-                mult = value,
-                card = card,
-                message = localize {
-                    type = 'variable',
-                    key = 'a_mult',
-                    vars = { value }
-                }
-            }
-        end
-    end
-end
 
 --
 
@@ -154,25 +151,25 @@ SMODS.Back{
                             viv_1:set_edition('e_base', true)
                             G.jokers:emplace(viv_1)
 
-                            local viv_2 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
-                            viv_2:add_to_deck()
-                            viv_2:set_edition('e_foil', true)
-                            G.jokers:emplace(viv_2)
-
-                            local viv_3 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
-                            viv_3:add_to_deck()
-                            viv_3:set_edition('e_holo', true)
-                            G.jokers:emplace(viv_3)
-
-                            local viv_4 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
-                            viv_4:add_to_deck()
-                            viv_4:set_edition('e_polychrome', true)
-                            G.jokers:emplace(viv_4)
-
-                            local viv_5 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
-                            viv_5:add_to_deck()
-                            viv_5:set_edition('e_negative', true)
-                            G.jokers:emplace(viv_5)
+--                             local viv_2 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
+--                             viv_2:add_to_deck()
+--                             viv_2:set_edition('e_foil', true)
+--                             G.jokers:emplace(viv_2)
+--
+--                             local viv_3 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
+--                             viv_3:add_to_deck()
+--                             viv_3:set_edition('e_holo', true)
+--                             G.jokers:emplace(viv_3)
+--
+--                             local viv_4 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
+--                             viv_4:add_to_deck()
+--                             viv_4:set_edition('e_polychrome', true)
+--                             G.jokers:emplace(viv_4)
+--
+--                             local viv_5 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
+--                             viv_5:add_to_deck()
+--                             viv_5:set_edition('e_negative', true)
+--                             G.jokers:emplace(viv_5)
                         return true
                         end
                     }))
