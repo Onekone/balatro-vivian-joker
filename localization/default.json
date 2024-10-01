@@ -13,10 +13,9 @@
         "name": "Vivian",
         "text": [
           "Played cards with {C:purple}Spade{} suit give {C:mult}mult{}",
-          "instead of {C:chips}chips{} when scored",
+          "and lose {C:chips}chips{} equal to {C:chips}chip value{} when scored",
           "{C:inactive}(Only counts chips from base value,{}",
-          "{C:inactive}bonus enchantment and foil edition.{}",
-          "{C:inactive}Lose that many chips and gain that much mult){}",
+          "{C:inactive}bonus enchantment and foil edition.){}",
           " ",
           "{C:inactive}Character by {}{C:chips}x:@akihari_chiko{}",
           ""

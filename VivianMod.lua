@@ -117,7 +117,20 @@ viv = SMODS.Joker{
             end
 
             if context.other_card:is_suit('Spades') then
-                local value = context.other_card.base.nominal + context.other_card.ability.bonus + context.other_card.edition.chips
+                local value = context.other_card.base.nominal
+
+                if not context.other_card.ability == nil then
+                    value = value + (context.other_card.ability.bonus or 0)
+                end
+
+                if not context.other_card.edition == nil then
+                    value = value + (context.other_card.edition.chips or 0)
+                end
+
+                if value <= 0 then
+                    return {}
+                end
+
                 return {
                     chips = -value,
                     mult = value,
@@ -151,6 +164,10 @@ SMODS.Back{
                             viv_1:set_edition('e_base', true)
                             G.jokers:emplace(viv_1)
 
+                            local viv_1 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_blueprint")
+                            viv_1:add_to_deck()
+                            viv_1:set_edition('e_base', true)
+                            G.jokers:emplace(viv_1)
 --                             local viv_2 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
 --                             viv_2:add_to_deck()
 --                             viv_2:set_edition('e_foil', true)
