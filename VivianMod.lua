@@ -33,15 +33,11 @@ viv = SMODS.Joker{
                 local value = context.other_card.base.nominal
 
                 if not context.other_card.ability == nil then
-                    if (context.other_card.ability.bonus or 0) > 0 then
-                        value = value + (context.other_card.ability.bonus or 0)
-                    end
+                    value = value + math.max((context.other_card.ability.bonus or 0),0)
                 end
 
                 if not context.other_card.edition == nil then
-                    if (context.other_card.edition.chips or 0) > 0 then
-                        value = value + (context.other_card.edition.chips or 0)
-                    end
+                    value = value + math.max((context.other_card.edition.chips or 0),0)
                 end
 
                 if value <= 0 then
