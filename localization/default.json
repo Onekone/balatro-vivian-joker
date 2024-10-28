@@ -4,7 +4,7 @@
       "b_viv_vivian_deck": {
         "name": "Vivian's Deck",
         "text": [
-          "Start with {C:purple}Vivian{} Joker"
+          "Start with {C:purple,T:j_viv_vivian_joker}Vivian{} Joker"
         ]
       }
     },
@@ -17,8 +17,7 @@
           "{C:inactive}(Only counts chips from base value,{}",
           "{C:inactive}bonus enchantment and foil edition.){}",
           " ",
-          "{C:inactive}Character by {}{C:chips}x:@akihari_chiko{}",
-          ""
+          "{C:inactive}Character by {}{C:chips}x:@akihari_chiko{}"
         ]
       }
     }

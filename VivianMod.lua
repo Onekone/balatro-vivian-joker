@@ -10,93 +10,6 @@
 
 SMODS.Atlas({key = 'VivianAtlas', path = 'Viv.png', px = 71, py = 95})
 
---[[G.localization.misc.challenge_names['c_mod_GenChal'] = 'General Challenge'
-table.insert(G.CHALLENGES,1,{
-   name = 'Custom Generated Challenge',
-   id = 'c_mod_GenChal',
-
-   rules = {
-       custom = {
-       },
-       modifiers = {
-       }
-   },
-   jokers = {
-      {id = 'j_vivian_vivian_joker', eternal = true, edition = 'base'} ,
-   },
-   vouchers = {
-      {id = 'v_palette'}
-   },
-   deck = {
-       cards = {
-                   {s='S', r='2',e='m_stone'},
-                   {s='S', r='3',e='m_stone'},
-                   {s='S', r='4',e='m_stone'},
-                   {s='S', r='5',e='m_stone'},
-                   {s='S', r='6',e='m_stone'},
-                   {s='S', r='7',e='m_stone'},
-                   {s='S', r='8',e='m_stone'},
-                   {s='S', r='9',e='m_stone'},
-                   {s='S', r='T',e='m_stone'},
-                   {s='S', r='A',e='m_stone'},
-                   {s='S', r='J',e='m_stone'},
-                   {s='S', r='Q',e='m_stone'},
-                   {s='S', r='K',e='m_stone'},
-
-            {s='S', r='2',d='foil'},
-            {s='S', r='3',d='foil'},
-            {s='S', r='4',d='foil'},
-            {s='S', r='5',d='foil'},
-            {s='S', r='6',d='foil'},
-            {s='S', r='7',d='foil'},
-            {s='S', r='8',d='foil'},
-            {s='S', r='9',d='foil'},
-            {s='S', r='T',d='foil'},
-            {s='S', r='A',d='foil'},
-            {s='S', r='J',d='foil'},
-            {s='S', r='Q',d='foil'},
-            {s='S', r='K',d='foil'},
-
-            {s='S', r='2',d='foil',e='m_bonus'},
-            {s='S', r='3',d='foil',e='m_bonus'},
-            {s='S', r='4',d='foil',e='m_bonus'},
-            {s='S', r='5',d='foil',e='m_bonus'},
-            {s='S', r='6',d='foil',e='m_bonus'},
-            {s='S', r='7',d='foil',e='m_bonus'},
-            {s='S', r='8',d='foil',e='m_bonus'},
-            {s='S', r='9',d='foil',e='m_bonus'},
-            {s='S', r='T',d='foil',e='m_bonus'},
-            {s='S', r='A',d='foil',e='m_bonus'},
-            {s='S', r='J',d='foil',e='m_bonus'},
-            {s='S', r='Q',d='foil',e='m_bonus'},
-            {s='S', r='K',d='foil',e='m_bonus'},
-
-            {s='S', r='2',e='m_bonus'},
-            {s='S', r='3',e='m_bonus'},
-            {s='S', r='4',e='m_bonus'},
-            {s='S', r='5',e='m_bonus'},
-            {s='S', r='6',e='m_bonus'},
-            {s='S', r='7',e='m_bonus'},
-            {s='S', r='8',e='m_bonus'},
-            {s='S', r='9',e='m_bonus'},
-            {s='S', r='T',e='m_bonus'},
-            {s='S', r='A',e='m_bonus'},
-            {s='S', r='J',e='m_bonus'},
-            {s='S', r='Q',e='m_bonus'},
-            {s='S', r='K',e='m_bonus'},
-        },
-       type = 'Plasma Deck'
-  },
-   restrictions = {
-       banned_cards = {
-       },
-       banned_tags = {
-       },
-       banned_other = {
-       }
-   }
-})]]--
-
 viv = SMODS.Joker{
     key = 'vivian_joker',
     rarity = 3,
@@ -120,11 +33,15 @@ viv = SMODS.Joker{
                 local value = context.other_card.base.nominal
 
                 if not context.other_card.ability == nil then
-                    value = value + (context.other_card.ability.bonus or 0)
+                    if (context.other_card.ability.bonus or 0) > 0 then
+                        value = value + (context.other_card.ability.bonus or 0)
+                    end
                 end
 
                 if not context.other_card.edition == nil then
-                    value = value + (context.other_card.edition.chips or 0)
+                    if (context.other_card.edition.chips or 0) > 0 then
+                        value = value + (context.other_card.edition.chips or 0)
+                    end
                 end
 
                 if value <= 0 then
@@ -159,34 +76,7 @@ SMODS.Back{
     apply = function(self)
         G.E_MANAGER:add_event(Event({
                         func = function()
-                            local viv_1 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
-                            viv_1:add_to_deck()
-                            viv_1:set_edition('e_base', true)
-                            G.jokers:emplace(viv_1)
-
-                            local viv_1 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_blueprint")
-                            viv_1:add_to_deck()
-                            viv_1:set_edition('e_base', true)
-                            G.jokers:emplace(viv_1)
---                             local viv_2 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
---                             viv_2:add_to_deck()
---                             viv_2:set_edition('e_foil', true)
---                             G.jokers:emplace(viv_2)
---
---                             local viv_3 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
---                             viv_3:add_to_deck()
---                             viv_3:set_edition('e_holo', true)
---                             G.jokers:emplace(viv_3)
---
---                             local viv_4 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
---                             viv_4:add_to_deck()
---                             viv_4:set_edition('e_polychrome', true)
---                             G.jokers:emplace(viv_4)
---
---                             local viv_5 = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_viv_vivian_joker")
---                             viv_5:add_to_deck()
---                             viv_5:set_edition('e_negative', true)
---                             G.jokers:emplace(viv_5)
+                            addYoker("j_viv_vivian_joker","e_base")
                         return true
                         end
                     }))
@@ -194,6 +84,14 @@ SMODS.Back{
     trigger_effect = function(self, args)
     end
 }
+
+function addYoker(yoker, edition)
+    edition = edition or "e_base"
+    local j = create_card("Joker", G.jokers, nil, nil, nil, nil, yoker)
+    j:add_to_deck()
+    j:set_edition(edition, true)
+    G.jokers:emplace(j)
+end
 
 ----------------------------------------------
 ------------MOD CODE END----------------------
