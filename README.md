@@ -18,6 +18,6 @@ Rulings:
 * Conversion happens as a joker proc on played scored card, similarly to Wraithful Joker and Arrowhead
 * On proc, gain base value of the card, edition and enchanment chip bonuses as mult, and subtract that much from chips
 * Other effects that grant chips, like Hiker, do not interact with Vivian
-* Chips drain does not stop at 0 and might cause chips to go into negatives (eg. from retriggers), draining your score, including putting itself score into negatives 
+* Chips drain does not stop at 0 and might cause chips to go into negatives (eg. from retriggers), draining your score, including putting score itself into negatives 
 
 Additionally, there's also a deck that contains him as a starting joker with a sticker that removes his sell value (can be still sold)
