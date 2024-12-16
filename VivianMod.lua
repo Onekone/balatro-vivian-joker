@@ -3,7 +3,7 @@
 --- MOD_ID: vivian_mod
 --- MOD_AUTHOR: [Onekone]
 --- MOD_DESCRIPTION: A mod with a joker and a deck that starts with it
---- VERSION: 1.0.0
+--- VERSION: 0.1.0
 --- PREFIX: viv
 ----------------------------------------------
 ------------MOD CODE -------------------------
@@ -32,12 +32,12 @@ viv = SMODS.Joker{
             if context.other_card:is_suit('Spades') then
                 local value = context.other_card.base.nominal
 
-                if not context.other_card.ability == nil then
-                    value = value + math.max((context.other_card.ability.bonus or 0),0)
+                if ((context.other_card.ability or nil) ~= nil) then
+                  value = value + math.max((context.other_card.ability.bonus or 0),0)
                 end
 
-                if not context.other_card.edition == nil then
-                    value = value + math.max((context.other_card.edition.chips or 0),0)
+                if ((context.other_card.edition or nil) ~= nil) then
+                  value = value + math.max((context.other_card.edition.chips or 0),0)
                 end
 
                 if value <= 0 then
@@ -48,11 +48,7 @@ viv = SMODS.Joker{
                     chips = -value,
                     mult = value,
                     card = card,
-                    message = localize {
-                        type = 'variable',
-                        key = 'a_mult',
-                        vars = { value }
-                    }
+                    message = 'Swap!'
                 }
             end
         end
@@ -81,11 +77,33 @@ SMODS.Back{
     end
 }
 
+a = SMODS.Sticker{
+    key = 'freebie',
+    badge_colour = HEX("f8f800"),
+    atlas = 'VivianAtlas',
+    pos = {
+        x = 3,
+        y = 0
+    },
+    loc_txt = {
+        label = 'Not for resale',
+        name = 'Not for resale',
+        text = {
+            '{C:attention}Sell value{} is always {C:gold}$0{}',
+        }
+    },
+    rate = 0.0
+}
+
+
 function addYoker(yoker, edition)
     edition = edition or "e_base"
     local j = create_card("Joker", G.jokers, nil, nil, nil, nil, yoker)
     j:add_to_deck()
     j:set_edition(edition, true)
+    a:apply(j,true)
+    j:set_cost()
+
     G.jokers:emplace(j)
 end
 

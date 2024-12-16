@@ -1,0 +1,23 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "self.sell_cost_label = self.facing == 'back' and '?' or self.sell_cost"
+position = "after"
+payload = '''
+self.sell_cost_label = self.facing == 'back' and '?' or self.sell_cost
+
+
+
+if self.ability.viv_freebie then
+  self.cost = 0
+  self.sell_cost = 0
+  self.sell_cost_label = '-'
+end
+'''
+match_indent = true
+times = 2

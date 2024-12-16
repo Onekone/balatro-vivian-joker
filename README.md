@@ -1,6 +1,6 @@
 # Vivian Joker
 
-Mod adding a joker after an original character of [Akihari Chiko](https://x.com/akihari_chiko), Vivian
+Mod adding a joker after an original character of [Akihari Chiko](https://bsky.app/profile/akihari-chiko.bsky.social), Vivian
 
 ### Requires [Steamodded 1.0.0](https://github.com/Steamopollys/Steamodded/wiki/01.-Getting-started) and [Lovely](https://github.com/ethangreen-dev/lovely-injector?tab=readme-ov-file#manual-installation)
 
@@ -14,10 +14,10 @@ Mod adding a joker after an original character of [Akihari Chiko](https://x.com/
 
 Features Vivian as the rare Joker with ability to gain mult with scored spade cards instead of chips
 
-Rulings (and known issues):
+Rulings:
 * Conversion happens as a joker proc on played scored card, similarly to Wraithful Joker and Arrowhead
-* On proc, base chip value of a card (2-11) and chip values of edition (50 for foil) and enchantment (30 for bonus) are subtracted from hand score and that much mult is added instead
-* Other effects, including Hiker, that grant chips do not interact with Vivian
-* Additional copies of Vivian (through Invisible joker, Showman, Blueprint, etc) do the same, potentially resulting in going into negative chips and actually draining your score. Doing so might bug out score display however 
+* On proc, gain base value of the card, edition and enchanment chip bonuses as mult, and subtract that much from chips
+* Other effects that grant chips, like Hiker, do not interact with Vivian
+* Chips drain does not stop at 0 and might cause chips to go into negatives (eg. from retriggers), draining your score, including putting itself score into negatives 
 
-Additionally, there's also a deck that contains him as a starting joker
+Additionally, there's also a deck that contains him as a starting joker with a sticker that removes his sell value (can be still sold)
