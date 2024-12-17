@@ -3,7 +3,7 @@
 --- MOD_ID: vivian_mod
 --- MOD_AUTHOR: [Onekone]
 --- MOD_DESCRIPTION: A mod with a joker and a deck that starts with it
---- VERSION: 0.1.0
+--- VERSION: 0.1.1
 --- PREFIX: viv
 ----------------------------------------------
 ------------MOD CODE -------------------------

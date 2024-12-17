@@ -39,3 +39,38 @@ end
 '''
 match_indent = true
 times = 1
+
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+text = localize{type='variable',key='a_chips',vars={amt}}
+'''
+position = "at"
+payload = '''
+local locale_key = 'a_chips'
+if (amt < 0) then
+  locale_key = 'a_chips_minus'
+end
+text = localize{type='variable',key=locale_key,vars={math.abs(amt)}}
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+text = localize{type='variable',key='a_mult',vars={amt}}
+'''
+position = "at"
+payload = '''
+local locale_key = 'a_mult'
+if (amt < 0) then
+  locale_key = 'a_mult_minus'
+end
+text = localize{type='variable',key=locale_key,vars={math.abs(amt)}}
+'''
+match_indent = true
+times = 1
